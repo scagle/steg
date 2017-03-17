@@ -26,8 +26,8 @@ DEPENDENCIES
 
 SYNOPSIS
 
-    encrypt [-o] [-noblend] [-seperator=...]
-    decrypt [-dir]
+    encrypt [-o] [-noblend] [-separator=#]
+    decrypt [-dir] [-seperator=#]
     details
     help
 
@@ -54,14 +54,17 @@ COMMANDS:
                             is finished with the data. Blending helps camouflage data.
                             Use when you want to see the block of data in the image.
 
-        -seperator=#:   :   tells the encoder what 0-8 digit to use to place in the least
+        -separator=#:   :   tells the encoder what 0-8 digit to use to place in the least
                             significant digit of the RGB values when separating the files
-                            from one another. (Not super useful)
+                            from one another. Defaults to 2 (Not super useful)
 
     decrypt [image]
         Decodes an image with hidden data inside. Saves files into your current directory
         if no location is set. (Will overwrite without permission)
         -dir            :   tells the decoder where to store files found inside image
+        -separator=#    :   tells the decoder what 0-8 digit to read when it reaches the
+                            end of a block of data, so that it can keep files seperated.
+                            Defaults to 2
 
     details [image]
         Provides the data about the image such as how much data (bytes, kilobytes, ...) it
@@ -77,4 +80,4 @@ EXAMPLES
     >> python3 bin/hidimg.py decrypt test.jpg -dir randomDirectory
     
     Crazy, but still valid example:
-    >> python3 bin/hidimg.py encrypt -o output.png test.jpg -seperator=6 ../Stuff/*.txt -noblend ../Stuff/*.zip 
+    >> python3 bin/hidimg.py encrypt -o output.png test.jpg -separator=6 ../Stuff/*.txt -noblend ../Stuff/*.zip 
