@@ -40,7 +40,7 @@ def get_bits(f, name):
         for i in reversed(range(8)):
             yield ((byte >> i) & 1)
 
-    yield seperator
+    yield separator
 
     byte = f.read(1)
     while (byte != b''):
@@ -67,12 +67,12 @@ def encrypt_file(files, px, end, blend):
                 while (b != -1):
                     data += str(b)
                     b = next(bitgen)
-                data += str(seperator)
+                data += str(separator)
             except Exception as e:
                 traceback.print_exc()
     try:
         print("==> Finished making binary data\n==> Starting encryption...")
-        data += str(seperator+1)
+        data += str(separator+1)
         bitgen = get_data(data)
         b = next(bitgen)
         done = False
@@ -99,7 +99,7 @@ def encrypt_file(files, px, end, blend):
         raise
 
 def checkSize(pixels, files):
-    total = len(files)*2  # starts out with this to account for seperators (there's not too many of them but if you have a bunch of files it matters)
+    total = len(files)*2  # starts out with this to account for separators (there's not too many of them but if you have a bunch of files it matters)
     for f in files:
         total += os.path.getsize(f)
     maximum = ((pixels[0] * pixels[1]) * 3) // 8
@@ -107,10 +107,10 @@ def checkSize(pixels, files):
         return None
     else:
         return (total, maximum)
-seperator = 2
+separator = 2
 fileDir = os.path.dirname(os.path.realpath('__file__'))
 def encrypt(image, files, sep = 2, blend=True, outFile=""):
-    seperator = sep
+    separator = sep
     im = Image.open(image)
     copy = im.copy()
     px = copy.load()
@@ -144,3 +144,4 @@ def encrypt(image, files, sep = 2, blend=True, outFile=""):
     except Exception as e:
         print("*** Unknown exception:")
         traceback.print_exc()
+
