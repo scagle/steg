@@ -10,9 +10,11 @@ I also have always wanted to make a command line tool. (Even though the python n
 of this tool has made it quite unorthodox)
 
 NAME
+
     imghid - Store and extract files hidden within images
 
 DEPENDENCIES
+
     This requires PIL (Pillow) in order to operate because it opens/reads/writes/saves 
     images.
 
@@ -23,12 +25,14 @@ DEPENDENCIES
     the "\" vs "/" conflicts for paths.
 
 SYNOPSIS
+
     encrypt [-o] [-noblend] [-seperator=...]
     decrypt [-dir]
     details
     help
 
 DESCRIPTION
+
     This is a steganography tool that can hide files within the color data of an image.
     It converts the supplied files into binary data which is spliced into the least
     significant digit (one's place) of the RED BLUE and GREEN values of each pixel 
@@ -38,6 +42,7 @@ DESCRIPTION
         after encoding (234, 87, 94) will become (231, 81, 90)
 
 COMMANDS:
+
     In the following descriptions, * means optional.
 
     encrypt [image] [file1, *file2, ...]
@@ -66,7 +71,6 @@ COMMANDS:
         Displays basic unhelpful help page
 
 EXAMPLES 
-    python3 imghid.py encrypt test.jpg *.txt -noblend
-    python3 decrypt
 
-    python3 imghid.py decrypt test.jpg ../someDirectory/*.txt -noblend
+    python3 imghid.py encrypt test.jpg *.txt -noblend -o output.png
+    python3 imghid.py decrypt test.jpg -dir randomDirectory
