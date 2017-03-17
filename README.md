@@ -72,5 +72,9 @@ COMMANDS:
 
 EXAMPLES 
 
-    python3 imghid.py encrypt test.jpg *.txt -noblend -o output.png
-    python3 imghid.py decrypt test.jpg -dir randomDirectory
+    From inside imghd-master/ 
+    >> python3 bin/hidimg.py encrypt test.jpg *.txt -noblend -o output.png
+    >> python3 bin/hidimg.py decrypt test.jpg -dir randomDirectory
+    
+    Crazy, but still valid example:
+    >> python3 bin/hidimg.py encrypt -o output.png test.jpg -seperator=6 ../Stuff/*.txt -noblend ../Stuff/*.zip 
