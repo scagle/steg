@@ -29,6 +29,7 @@ if 'decrypt' in sys.modules == False:
 
 if (len(args) > 2):
     if (args[1] == "details"):
+        ###### Details
         imgType = imghdr.what(os.path.join(fileDir, args[2])) # returns an image type (IE: tiff, jpeg, png, etc)
         if imgType == None:
             sys.exit("*** "+args[2] + " has an image format not recognized by PIL")
@@ -44,6 +45,7 @@ if (len(args) > 2):
         except:
             traceback.print_exc()
     elif (args[1] == "encrypt"):
+        ###### Options
         blend = True
         if "-noblend" in args:
             blend = False
@@ -70,6 +72,7 @@ if (len(args) > 2):
                     print("^^^ Set seperator to", seperator)
                 else:
                     sys.exit("Invalid seperator")
+        ###### Encrypt
         if (len(args) > 3):
             filepaths = [os.path.join(fileDir, f) for f in args[3:]]
             image = os.path.join(fileDir, args[2])
@@ -78,6 +81,7 @@ if (len(args) > 2):
         else:
             print("==> Error: not enough arguments"+ rec())
     elif (args[1] == "decrypt"):
+        ###### Options
         outDir = ""
         try:
             out = args.index("-dir")
@@ -99,6 +103,7 @@ if (len(args) > 2):
                     print("^^^ Set seperator to", seperator)
                 else:
                     sys.exit("Invalid seperator")
+        ###### Decrypt
         if (len(args) > 2):
             image = os.path.join(fileDir, args[2])
             if ((outDir != "") and (outDir[-1] == "/")):
@@ -108,6 +113,7 @@ if (len(args) > 2):
         else:
             print("==> Error: not enough arguments"+ rec())
 elif (len(args) > 1):
+    ###### Help
     if (args[1] == "help"):
         print("\nThis is a steganography tool used to encrypt and decrypt files in images with a very specific pattern.")
         print("Heres a list of the commands:\n  - " + "\n\n  - ".join((c + "\n    - " + commands[c]) for c in sorted(commands)))
