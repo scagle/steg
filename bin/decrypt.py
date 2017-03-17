@@ -4,7 +4,7 @@ import sys
 from PIL import Image
 
 fileDir = os.path.dirname(os.path.realpath('__file__'))
-seperator = 2
+separator = 2
 def binary_to_bytes(string):
     bytefiles = []
     lastlocation = 0
@@ -17,14 +17,14 @@ def binary_to_bytes(string):
     except ValueError:
 #        traceback.print_exc()
         if (lastlocation >= 2):
-            sys.exit("*** Got through some of the data, but reached invalid bit.\n  Here are the last two bytes:\n    "+string[lastlocation*8-8 : lastlocation*8+8]+"\n*** Maybe the seperator is incorrect?")
+            sys.exit("*** Got through some of the data, but reached invalid bit.\n  Here are the last two bytes:\n    "+string[lastlocation*8-8 : lastlocation*8+8]+"\n*** Maybe the separator is incorrect?")
         else:
             sys.exit("*** Found no data\n*** Maybe the image doesn't have any stored data?")
     return bytefiles
 
 def decrypt(image, sep=2, outDir=""):
     print("==> Attempting to decrypt", os.path.basename(image))
-    seperator = sep
+    separator = sep
     im = Image.open(image)
     px = im.load()
     data = ""
@@ -38,12 +38,12 @@ def decrypt(image, sep=2, outDir=""):
                 data += r
                 data += g
                 data += b
-                if ((r == str(seperator+1)) or (g == str(seperator+1)) or (b == str(seperator+1))):
-                    data = data[:data.find(str(seperator+1))-1]  #because there's a '56' at the very end and we don't want either one
+                if ((r == str(separator+1)) or (g == str(separator+1)) or (b == str(separator+1))):
+                    data = data[:data.find(str(separator+1))-1]  #because there's a '56' at the very end and we don't want either one
                     raise(Exception)
     except(Exception):
         pass 
-    name_and_filedata = data.split(str(seperator))
+    name_and_filedata = data.split(str(separator))
     names = []
     filedata = []
     for i, seg in enumerate(name_and_filedata):
@@ -74,8 +74,8 @@ def decrypt(image, sep=2, outDir=""):
                 warnings += 1
                 print("*** Warning: Empty File")
     except ValueError:
-        print("Seperator", seperator)
-        sys.exit("*** Can't find file(s), either no data or incorrect seperator")
+        print("Seperator", separator)
+        sys.exit("*** Can't find file(s), either no data or incorrect separator")
     except:
         print("*** Decryption Failed")
         traceback.print_exc()
