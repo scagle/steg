@@ -15,8 +15,8 @@ NAME
 
 DEPENDENCIES
 
-    This requires PIL (Pillow) in order to operate because it opens/reads/writes/saves 
-    images.
+    This requires PIL (tested using version 1.1.7) in order to operate because it opens/reads/writes/saves 
+    images. 
 
     Python 3.0+
 
@@ -26,8 +26,8 @@ DEPENDENCIES
 
 SYNOPSIS
 
-    encrypt [-o] [-noblend] [-separator=#]
-    decrypt [-dir] [-separator=#]
+    encrypt [-o file] [-noblend] [-separator=2-8]
+    decrypt [-dir directory] [-separator=2-8]
     details
     help
 
@@ -48,30 +48,30 @@ COMMANDS:
     encrypt [image] [file1, *file2, ...]
         Encodes an image with files of various types of files. (.txt, .jpg, .zip, .pdf, ...)
         Will save encrypted image as same image with a pre-pended "e" if no -o is specified.
-        -o              :   (out) path/name to save the encoded image as
+        [-o file]       :   (out) path/name to save the encoded image as
 
-        -noblend        :   stops the encoder from "blending" the rest of the image after it 
+        [-noblend]      :   stops the encoder from "blending" the rest of the image after it 
                             is finished with the data. Blending helps camouflage data.
                             Use when you want to see the block of data in the image.
 
-        -separator=#:   :   tells the encoder what 0-8 digit to use to place in the least
+        [-separator=#]  :   tells the encoder what 2-8 digit to use to place in the least
                             significant digit of the RGB values when separating the files
-                            from one another. Defaults to 2 (Not super useful)
+                            from one another. (Defaults to 2)
 
     decrypt [image]
         Decodes an image with hidden data inside. Saves files into your current directory
         if no location is set. (Will overwrite without permission)
-        -dir            :   tells the decoder where to store files found inside image
-        -separator=#    :   tells the decoder what 0-8 digit to read when it reaches the
-                            end of a block of data, so that it can keep files seperated.
-                            Defaults to 2
+        [-dir directory]  :   tells the decoder where to store files found inside image
+        [-separator=#]    :   tells the decoder what 2-8 digit to read when it reaches the
+                              end of a block of data, so that it can keep files seperated.
+                              (Defaults to 2)
 
     details [image]
         Provides the data about the image such as how much data (bytes, kilobytes, ...) it
         can store.
 
     help
-        Displays basic unhelpful help page
+        Displays basic help page
 
 EXAMPLES 
 
