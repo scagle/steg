@@ -27,7 +27,7 @@ DEPENDENCIES
 SYNOPSIS
 
     encrypt [-o] [-noblend] [-separator=#]
-    decrypt [-dir] [-seperator=#]
+    decrypt [-dir] [-separator=#]
     details
     help
 
