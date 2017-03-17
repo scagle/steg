@@ -8,12 +8,12 @@ import imghdr
 
 commands = {
         "details :  python3 [this_file] details [image]" : "Display the details of a supplied image, and see how much data it can store",
-        "encrypt :  python3 [this_file] encrypt [image] [file1, *file2, ..., *file2] [*-o] [*-noblend] [*-seperator=]" : "Takes a list of files (works with most formats), converts them into bytes and binary, which is then overlayed onto the supplied image's RGB color data",
+        "encrypt :  python3 [this_file] encrypt [image] [file1, *file2, ..., *file2] [*-o] [*-noblend] [*-separator=]" : "Takes a list of files (works with most formats), converts them into bytes and binary, which is then overlayed onto the supplied image's RGB color data",
         "decrypt :  python3 [this_file] decrypt [image] [*-dir]" : "Takes an image and tries its best to extract data from an image who's data has been overlayed in the least significant digit of the RGB data. It saves the files found in ./decrypted",
         "help    :  python3 [this_file] help"    : "Help page"
         }
 
-seperator = 2 # which number will seperate the sets 55of data in the encryption
+separator = 2 # which number will seperate the sets 55of data in the encryption
 fileDir = os.path.dirname(os.path.realpath('__file__'))
 args = sys.argv # the first element is always the name of this file
 
@@ -63,20 +63,20 @@ if (len(args) > 2):
                 args.remove(outFile)
                 print("^^^ Going to save as " + os.path.join(fileDir, outFile))
         for arg in args:
-            if "-seperator=" in arg:
-                seperator = arg[arg.find("=")+1:] 
-                if ((len(seperator) == 1) and (seperator.isdigit()) and (int(seperator) > 1)):
-                    if (seperator == "9"):
-                        sys.exit("*** Sorry, seperator can't be 9, has to be 0-8 (annoying temporary problem)")
+            if "-separator=" in arg:
+                separator = arg[arg.find("=")+1:] 
+                if ((len(separator) == 1) and (separator.isdigit()) and (int(separator) > 1)):
+                    if (separator == "9"):
+                        sys.exit("*** Sorry, separator can't be 9, has to be 0-8 (annoying temporary problem)")
                     args.remove(arg)
-                    print("^^^ Set seperator to", seperator)
+                    print("^^^ Set separator to", separator)
                 else:
-                    sys.exit("Invalid seperator")
+                    sys.exit("Invalid separator")
         ###### Encrypt
         if (len(args) > 3):
             filepaths = [os.path.join(fileDir, f) for f in args[3:]]
             image = os.path.join(fileDir, args[2])
-            encrypt(image, filepaths, sep=int(seperator), blend=blend, outFile=outFile)
+            encrypt(image, filepaths, sep=int(separator), blend=blend, outFile=outFile)
             print("==> Encryption Successful")
         else:
             print("==> Error: not enough arguments"+ rec())
@@ -94,21 +94,21 @@ if (len(args) > 2):
                 args.remove(outDir)
                 print("^^^ Setting output directory to " + os.path.join(fileDir, outDir))
         for arg in args:
-            if "-seperator=" in arg:
-                seperator = arg[arg.find("=")+1:] 
-                if ((len(seperator) == 1) and (seperator.isdigit()) and (int(seperator) > 1)):
-                    if (seperator == "9"):
-                        sys.exit("*** Sorry, seperator can't be 9, has to be 0-8 (annoying temporary problem)")
+            if "-separator=" in arg:
+                separator = arg[arg.find("=")+1:] 
+                if ((len(separator) == 1) and (separator.isdigit()) and (int(separator) > 1)):
+                    if (separator == "9"):
+                        sys.exit("*** Sorry, separator can't be 9, has to be 0-8 (annoying temporary problem)")
                     args.remove(arg)
-                    print("^^^ Set seperator to", seperator)
+                    print("^^^ Set separator to", separator)
                 else:
-                    sys.exit("Invalid seperator")
+                    sys.exit("Invalid separator")
         ###### Decrypt
         if (len(args) > 2):
             image = os.path.join(fileDir, args[2])
             if ((outDir != "") and (outDir[-1] == "/")):
                 outDir = outDir[:len(outDir)-1]
-            decrypt(image, sep=int(seperator), outDir=outDir)
+            decrypt(image, sep=int(separator), outDir=outDir)
             print("==> Decryption Successful")
         else:
             print("==> Error: not enough arguments"+ rec())
