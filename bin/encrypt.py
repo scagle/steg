@@ -1,6 +1,7 @@
 import traceback
 import sys
 import os
+import random
 from PIL import Image
 
 
@@ -14,19 +15,24 @@ def modifyRGB(px, pos, currentRGB, bit):
         prev = px[pos[0], pos[1]]
         color = str(prev[currentRGB])
         changedcolor = int( color[:len(color)-1] + str(bit) )
+        if ( (prev[currentRGB] - changedcolor > 5) and (changedcolor < 250) ): 
+            changedcolor += 10                      # If original rgb is significantly higher than new rgb, add 10 then change least significant digit
+                                                    # IE:   Original = 99, new = 90.     |99 - 90|  = 9. which is very big,
+                                                    #     so:
+                                                    #       Original = 99, new = 90+10.  |99 - 100| = 1. which is very small.
+        elif ( (prev[currentRGB] - changedcolor < -5) and (changedcolor >= 10)):
+            changedcolor -= 10                      # Same as above, just checking opposite direction (not ever going to happen in binary, (I may use octal in the future))
         if currentRGB == 0:
             px[pos[0], pos[1]] = (changedcolor, prev[1], prev[2])
         elif currentRGB == 1:
             px[pos[0], pos[1]] = (prev[0], changedcolor, prev[2])
         elif currentRGB == 2:
             px[pos[0], pos[1]] = (prev[0], prev[1], changedcolor)
-    else:
+    else: # Blend in the rest of the image
         prev = px[pos[0], pos[1]]
         color = str(prev[currentRGB])
-        if ((prev[0]+prev[1]+prev[2]) % 2 == 0):
-            changedcolor = int( color[:len(color)-1] + "0")
-        else:
-            changedcolor = int( color[:len(color)-1] + "1")
+        random.random(); # Makes random number generator
+        changedcolor = int( color[:len(color)-1] + str(random.randint(0, 1)))
         if currentRGB == 0:
             px[pos[0], pos[1]] = (changedcolor, prev[1], prev[2])
         elif currentRGB == 1:
