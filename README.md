@@ -10,25 +10,36 @@ solutions within images.
 ## Description
 These tools take files, convert them to raw binary (steg1), or raw octal (steg2) data and insert this data into the least-signficant-digit of an image's pixel rgb-data.
 
-## Tools:
-* steg1 - Version 1 (old)
-* steg2 - Version 2 (recommended)
+Images Officially Supported: .jpg, .png
 
-Biggest Difference is that steg1 uses binary numbers to store data into the pixels of images, while steg2 uses octal numbers
+## Tools:
+* steg1 - binary (old)
+* steg2 - octal  (recommended)
+
+## Comparison
+* Storing Plain Text (as dream.txt):
+> [I Have a Dream, by Martin Luther King, Jr. (August 28, 1963)](http://www.textfiles.com/etext/NONFICTION/)
+
+| `duck.png                     ` | after steg2 encode                    |
+| ------------------------------- | ------------------------------------- |
+| ![](steg2/test_images/duck.png) | ![](steg2/test_images/dreamy_duck.png)|
 
 ## Explanation
-* ASCII:  "Hi" 
+* data.txt: "Hi" 
 * Binary: 01001000 01101001 
 * Octal:  44151
 
-| raw-pixels   | steg1-pixels             | steg2-pixels             |
-| ------------ | ------------------------ | ------------------------ |
-| (100, 10, 1) | (10**0**, 1**1**, **0**) | (10**4**, 1**4**, **1**) |
-| (100, 10, 1) | (10**0**, 1**1**, **0**) | (10**5**, 1**1**, 1)     |
-| (100, 10, 1) | (10**0**, 1**0**, **0**) |                          |
-| (100, 10, 1) | (10**1**, 1**1**, **0**) |                          |
-| (100, 10, 1) | (10**1**, 1**0**, **0**) |                          |
-| (100, 10, 1) | (10**0**, 1**1**, 1)     |                          |
+| raw-pixels   | steg1-pixels                   | steg2-pixels                   |
+| ------------ | ------------------------------ | ------------------------------ |
+| (100, 10, 1) | (10**_0_**, 1**_1_**, **_0_**) | (10**_4_**, 1**_4_**, **_1_**) |
+| (100, 10, 1) | (10**_0_**, 1**_1_**, **_0_**) | (10**_5_**, 1**_1_**, **_8_**) |
+| (100, 10, 1) | (10**_0_**, 1**_0_**, **_0_**) | (10**_9_**, 10, 1)             |
+| (100, 10, 1) | (10**_1_**, 1**_1_**, **_0_**) |                                |
+| (100, 10, 1) | (10**_1_**, 1**_0_**, **_0_**) |                                |
+| (100, 10, 1) | (10**_1_**, 1**_8_**, **_9_**) |                                |
+
+* 8 is the "separator" digit between file1, file2, .. (we have only 1 in this case)
+* 9 is the "end" digit that signifies the end of data
 
 ## Dependencies
 * Both require Pillow (tested with version 5.4.1) 
@@ -39,5 +50,5 @@ pip install pillow
 * Tested on ArchLinux
 
 ## Usage
-For steg1 see [README](steg1/README.md)
-For steg2 see [README](steg2/README.md)
+* For steg1 see [README](steg1/README.md)
+* For steg2 see [README](steg2/README.md)
