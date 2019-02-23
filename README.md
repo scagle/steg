@@ -4,6 +4,7 @@ steg - Store and extract files hidden within images
 Inspired by:
 * http://www.pythonchallenge.com/
 * http://puzzling.stackexchange.com/
+
 These are puzzle websites that commonly use ciphers and steganography to hide clues and 
 solutions within images. 
 
