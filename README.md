@@ -13,14 +13,14 @@ These tools take files, convert them to raw binary (steg1), or raw octal (steg2)
 ## Tools:
 * steg1 - Version 1 (old)
 * steg2 - Version 2 (recommended)
+
 Biggest Difference is that steg1 uses binary numbers to store data into the pixels of images, while steg2 uses octal numbers
 
 ## Explanation
-ASCII:  "Hi" 
-Binary: 01001000 01101001 
-Octal:  44151
+* ASCII:  "Hi" 
+* Binary: 01001000 01101001 
+* Octal:  44151
 
-Converts to:
 | raw-pixels   | steg1-pixels             | steg2-pixels             |
 | ------------ | ------------------------ | ------------------------ |
 | (100, 10, 1) | (10**0**, 1**1**, **0**) | (10**4**, 1**4**, **1**) |
@@ -39,5 +39,5 @@ pip install pillow
 * Tested on ArchLinux
 
 ## Usage
-    For steg1 see [README](steg1/README.md)
-    For steg2 see [README](steg2/README.md)
+For steg1 see [README](steg1/README.md)
+For steg2 see [README](steg2/README.md)
