@@ -2,9 +2,9 @@
 steg - Store and extract files hidden within images
 
 Inspired by:
-  http://www.pythonchallenge.com/
-  http://puzzling.stackexchange.com/
-and other puzzle websites that commonly use ciphers and steganography to hide clues and 
+* http://www.pythonchallenge.com/
+* http://puzzling.stackexchange.com/
+These are puzzle websites that commonly use ciphers and steganography to hide clues and 
 solutions within images. 
 
 ## Description
@@ -20,7 +20,7 @@ Images Officially Supported: .jpg, .png
 * Storing Plain Text (as dream.txt):
 > [I Have a Dream, by Martin Luther King, Jr. (August 28, 1963)](http://www.textfiles.com/etext/NONFICTION/)
 
-| `duck.png                     ` | after steg2 encode                    |
+| `duck.png                     ` | steg2 encoded `dreamy_duck.png`       |
 | ------------------------------- | ------------------------------------- |
 | ![](steg2/test_images/duck.png) | ![](steg2/test_images/dreamy_duck.png)|
 
